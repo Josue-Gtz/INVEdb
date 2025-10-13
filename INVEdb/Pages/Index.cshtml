@@ -1,11 +1,11 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Iniciar sesión";
 }
+<br>
 <header class="header">
     <h2 class="left">InveDB</h2>
-    <h2 class="right">Account</h2>
 </header>
 <hr>
 <div class="text-center">
@@ -16,7 +16,7 @@
     <label for="password">Contraseña:</label><br>
     <input type="password" id="password" name="password" required><br>
     <br>
-    <button class="button button1">Acceder</button><br>
+    <button class="button button1" onclick="location.href='mainMenu'">Acceder</button><br>
     <br>
     <br>
     <p><a href="https://learn.microsoft.com/aspnet/core">¿Problemas al iniciar sesión?</a>.</p>
