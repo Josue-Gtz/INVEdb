@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace INVEdb.Pages
+namespace INVEdb.Pages.Admin
 {
-    public class mainMenuModel : PageModel
+    public class adminGsAlmacenModel : PageModel
     {
         public void OnGet()
         {

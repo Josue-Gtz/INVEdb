@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Inventario/capturista - Pizzería</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f6f9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .sidebar {
+            background: #2c3e50;
+            height: 100vh;
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            width: 220px;
+        }
+
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                display: block;
+                padding: 10px 20px;
+            }
+
+                .sidebar a:hover, .sidebar a.active {
+                    background: #1abc9c;
+                }
+
+            .sidebar h3 {
+                font-size: 1.5rem;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-box {
+            background: #eae7ff;
+            border-radius: 5px;
+            padding: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+            .filter-box label {
+                font-weight: bold;
+                color: #333;
+            }
+
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #d9d9d9;
+            text-transform: capitalize;
+        }
+
+        .btn-registrar {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .register-section {
+            margin-top: 15px;
+            background: #f0f0f5;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+            .register-section h5 {
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+
+            .register-section input, .register-section select {
+                margin-bottom: 10px;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h3 class="text-center">Pizza Planet 🪐</h3>   <!-- en este bloque se indica lo que tendra el menu y que es lo que esta activo-->
+        <a href="#" class="active">Accesos</a>
+        <a href="#">Inventario</a>
+        <a href="#">Gestor de almacen</a>
+        <a href="#">Gestor de productos</a>
+    </div>
+
+
+    <div class="content">
+        <h3 class="mb-4">InveDB - Inventario</h3>
+
+
+        <div class="filter-section">
+            <!-- filtros -->
+            <div class="filter-box">
+                <label>Producto</label>
+                <select class="form-select">
+                    <option value="">Seleccione...</option>
+                    <option>Queso Mozzarella</option>
+                    <option>Salsa de Tomate</option>
+                    <option>Harina</option>
+                    <option>Jamón</option>
+                    <option>Piña</option>
+                    <option>Champiñones</option>
+                </select>
+            </div>
+
+            <div class="filter-box">
+                <label>Categoría</label>
+                <select class="form-select">
+                    <option value="">Seleccione...</option>
+                    <option>Lácteos</option>
+                    <option>Salsas</option>
+                    <option>Granos</option>
+                    <option>Cárnicos</option>
+                    <option>Frutas</option>
+                    <option>Verduras</option>
+                </select>
+            </div>
+
+            <div class="filter-box">
+                <label>Proveedor</label>
+                <select class="form-select">
+                    <option value="">Seleccione...</option>
+                    <option>Lácteos del Norte</option>
+                    <option>Tomato Fresh</option>
+                    <option>Molinos México</option>
+                    <option>Embutidos del Sur</option>
+                    <option>Tropical Express</option>
+                    <option>Campo Verde</option>
+                </select>
+            </div>
+
+            <div class="filter-box">
+                <label>Fecha</label>
+                <input type="date" class="form-control">
+            </div>
+        </div>
+
+
+        <div class="table-container">
+            <!-- tabla de inventario -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Productos</th>
+                        <th>Categoría</th>
+                        <th>Cantidad</th>
+                        <th>Precio uni.</th>
+                        <th>Fecha</th>
+                        <th>Caducidad</th>
+                        <th>Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="8" class="text-center text-muted">No hay datos filtrados</td></tr>
+                </tbody>
+            </table>
+
+
+            <div class="btn-registrar">
+                <!-- boton para registrar -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Registrar
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Entrada</a></li>
+                        <li><a class="dropdown-item" href="#">Salida</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="register-section" id="formEntrada">
+                <!-- seccion para entrada y salida-->
+                <h5>Registro de Entrada</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Producto</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Cantidad</label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Proveedor</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Fecha</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="register-section" id="formSalida">
+                <h5>Registro de Salida</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Producto</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Cantidad</label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Sucursal</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <label>Fecha</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
